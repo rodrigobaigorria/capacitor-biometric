@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hbaigorria-technisys/capacitorBiometria.git.git"
+    "url": "git+https://github.com/rodrigobaigorria/capacitor-biometric.git.git"
   },
   "bugs": {
-    "url": "https://github.com/hbaigorria-technisys/capacitorBiometria.git/issues"
+    "url": "https://github.com/rodrigobaigorria/capacitor-biometric.git/issues"
   },
   "keywords": [
     "capacitor",

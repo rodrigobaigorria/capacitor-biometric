@@ -36,7 +36,7 @@ async saveDataUser(options: { value: string }): Promise<{ value: string }> {
 }
 ;
 
-async getDataUser() {
+async getDataUser(): Promise<{ value: string }> {
     return { value: 'getDataUser' };
 }
 
