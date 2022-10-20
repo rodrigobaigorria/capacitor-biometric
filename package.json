@@ -1,6 +1,6 @@
 {
   "name": "capacitor-plugin-biometric",
-  "version": "1.0.10",
+  "version": "1.1.9",
   "description": "login biometrico",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
