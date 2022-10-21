@@ -40,5 +40,8 @@ async getDataUser(): Promise<{ value: string }> {
     return { value: 'getDataUser' };
 }
 
+async cleanAll(): Promise<{ value: string }> {
+  return { value: 'cleanAll' };
+}
 
 }

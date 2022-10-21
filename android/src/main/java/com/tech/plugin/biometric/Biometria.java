@@ -32,4 +32,7 @@ public class Biometria {
 
   public  String getDataUser(String value) { return value; }
 
+  public  String cleanAll(String value) { return value; }
+
+
 }

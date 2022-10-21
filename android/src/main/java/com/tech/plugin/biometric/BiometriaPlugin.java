@@ -249,6 +249,15 @@ public class BiometriaPlugin extends Plugin {
     }
   }
 
+  @PluginMethod
+  public void cleanAll(PluginCall call) {
+    JSObject ret = new JSObject();
+
+    PreferenceManager.getDefaultSharedPreferences(getContext()).edit().clear().commit();
+      ret.put("value", implementation.getDataUser("OK"));
+      call.resolve(ret);
+  }
+
   @ActivityCallback
   private void verifyResult(PluginCall call, ActivityResult result){
     JSObject ret = new JSObject();
