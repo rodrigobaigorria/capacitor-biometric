@@ -213,6 +213,17 @@ public class BiometriaPlugin: CAPPlugin {
             "value": implementation.has(name)
         ])
     }
+
+    @objc func cleanAll(_ call: CAPPluginCall) {
+        let defaults = UserDefaults.standard
+        let dictionary = defaults.dictionaryRepresentation()
+        dictionary.keys.forEach { key in
+        defaults.removeObject(forKey: key)
+    }
+            call.resolve([
+                "value": implementation.cleanAll("OK")
+            ])
+    }
     
 }
 
