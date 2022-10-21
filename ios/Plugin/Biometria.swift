@@ -30,4 +30,9 @@ import Foundation
         //print(value)
         return value
     }
+
+    @objc public func cleanAll(_ value: String) -> String {
+        //print(value)
+        return value
+    }
 }
