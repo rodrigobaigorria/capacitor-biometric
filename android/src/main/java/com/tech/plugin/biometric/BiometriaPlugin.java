@@ -253,8 +253,13 @@ public class BiometriaPlugin extends Plugin {
   public void cleanAll(PluginCall call) {
     JSObject ret = new JSObject();
 
-    PreferenceManager.getDefaultSharedPreferences(getContext()).edit().clear().commit();
-      ret.put("value", implementation.getDataUser("OK"));
+    SharedPreferences sharedUser = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+    SharedPreferences.Editor editUser = sharedUser.edit();
+    editUser.clear().commit();
+    SharedPreferences sharedKey = getActivity().getSharedPreferences("TechBio", Context.MODE_PRIVATE);
+    SharedPreferences.Editor editKey = sharedKey.edit();
+    editKey.clear().commit();
+    ret.put("value", implementation.cleanAll("OK"));
       call.resolve(ret);
   }
 

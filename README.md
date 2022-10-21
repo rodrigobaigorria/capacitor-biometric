@@ -21,6 +21,7 @@ npx cap sync
 * [`save(...)`](#save)
 * [`saveDataUser(...)`](#savedatauser)
 * [`getDataUser()`](#getdatauser)
+* [`cleanAll()`](#cleanall)
 
 </docgen-index>
 
@@ -128,6 +129,17 @@ saveDataUser(options: { value: string; }) => Promise<{ value: string; }>
 
 ```typescript
 getDataUser() => Promise<{ value: string; }>
+```
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+
+--------------------
+
+
+### cleanAll()
+
+```typescript
+cleanAll() => Promise<{ value: string; }>
 ```
 
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
