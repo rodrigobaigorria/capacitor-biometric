@@ -62,23 +62,8 @@ public class Prompt extends AppCompatActivity {
       public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
         super.onAuthenticationError(errorCode, errString);
 
-        // Just negative button tap
-
-
-        if(mToEncrypt != null){
-          onAuthenticated(true);
-
-        }else{
           onAuthenticated(false);
           finishActivity("ERROR");
-
-        }
-
-
-
-
-
-
       }
 
       @Override
