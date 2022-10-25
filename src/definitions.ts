@@ -15,6 +15,6 @@ export interface BiometriaPlugin {
 
   getDataUser(): Promise<{ value: string}>;
 
-  cleanAll(): Promise<{ value: string}>;
+  cleanAll(options:{"source": string}): Promise<{ value: string}>;
   
 }

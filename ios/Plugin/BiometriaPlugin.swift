@@ -215,6 +215,7 @@ public class BiometriaPlugin: CAPPlugin {
     }
 
     @objc func cleanAll(_ call: CAPPluginCall) {
+        let source = call.getString("source") ?? ""
         let defaults = UserDefaults.standard
         let dictionary = defaults.dictionaryRepresentation()
         dictionary.keys.forEach { key in

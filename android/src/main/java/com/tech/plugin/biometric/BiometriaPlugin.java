@@ -251,6 +251,8 @@ public class BiometriaPlugin extends Plugin {
 
   @PluginMethod
   public void cleanAll(PluginCall call) {
+    String source = call.getString("source");
+
     JSObject ret = new JSObject();
 
     SharedPreferences sharedUser = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
