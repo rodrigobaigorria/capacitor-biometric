@@ -17,7 +17,6 @@ export class BiometriaWeb extends WebPlugin implements BiometriaPlugin {
   }
 
   async isAvailable(): Promise<{ value: string }> {
-    console.log('filter: ');
     return {
       value:"isAvailable"
     };
