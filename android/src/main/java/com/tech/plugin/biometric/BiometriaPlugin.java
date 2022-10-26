@@ -257,8 +257,8 @@ public class BiometriaPlugin extends Plugin {
 
     SharedPreferences sharedUser = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
     SharedPreferences.Editor editUser = sharedUser.edit();
-    editUser.clear().commit();
-    if(source == "verify") {
+    editUser.remove("name").commit();
+    if(source.equals("verify")) {
       SharedPreferences sharedKey = getActivity().getSharedPreferences("TechBio", Context.MODE_PRIVATE);
       SharedPreferences.Editor editKey = sharedKey.edit();
       editKey.clear().commit();
