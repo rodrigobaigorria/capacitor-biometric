@@ -63,12 +63,6 @@ public class Prompt extends AppCompatActivity {
         super.onAuthenticationError(errorCode, errString);
 
         SharedPreferences sharedPref = getSharedPreferences("TechBio",Context.MODE_PRIVATE);
-        if(tipo.equals("save")){
-          SharedPreferences.Editor editor = sharedPref.edit();
-          editor.putString(key, mToEncrypt);
-          editor.commit();
-          mToEncrypt = "";
-        }
           onAuthenticated(false);
           finishActivity("ERROR");
       }
