@@ -37,8 +37,8 @@ public class Prompt extends AppCompatActivity {
     Bundle extras = getIntent().getExtras();
     key = extras.getString("key");
     mCurrentMode = extras.getInt("mode");
-    mToEncrypt = extras.getString("pass");
     tipo = extras.getString("type");
+    mToEncrypt = extras.getString("pass");
 
 
 
@@ -62,6 +62,13 @@ public class Prompt extends AppCompatActivity {
       public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
         super.onAuthenticationError(errorCode, errString);
 
+        SharedPreferences sharedPref = getSharedPreferences("TechBio",Context.MODE_PRIVATE);
+        if(tipo.equals("save")){
+          SharedPreferences.Editor editor = sharedPref.edit();
+          editor.putString(key, mToEncrypt);
+          editor.commit();
+          mToEncrypt = "";
+        }
           onAuthenticated(false);
           finishActivity("ERROR");
       }
