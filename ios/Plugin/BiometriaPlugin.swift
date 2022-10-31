@@ -15,11 +15,12 @@ public class BiometriaPlugin: CAPPlugin {
 
     @objc func has(_ call: CAPPluginCall) {
         let value = call.getString("value") ?? ""
+        print("value desde has: \(value)")
         let userDefaults = UserDefaults.standard
         if((userDefaults.string(forKey: value)) != nil){
             print("Hay key")
             call.resolve([
-                "value": implementation.has("OK")
+                "value": implementation.has(value)
             ])
         }else{
             print("No hay key")
@@ -39,12 +40,12 @@ public class BiometriaPlugin: CAPPlugin {
     @objc func isAvailable(_ call: CAPPluginCall) {
         let context = LAContext()
         var type:String = ""
-           
+           print("isAvailable")
            guard !LAContext.biometricsChanged() else {
                // Handle biometrics changed, such as clearing credentials and making the user manually log in
                // Reset LAContext.savedBiometricsPolicyState to nil after doing so
                call.resolve([
-                   "value": implementation.isAvailable("niometriaCambio")
+                   "value": implementation.isAvailable("biometriaCambio")
                ])
                return
            }
@@ -106,14 +107,14 @@ public class BiometriaPlugin: CAPPlugin {
     @objc func verify(_ call: CAPPluginCall) {
         let defaults = UserDefaults.standard
         let key: String = call.getString("key") ?? ""
-        let message: String = call.getString("message") ?? ""
-        var context = LAContext()
+        let _: String = call.getString("message") ?? ""
+        let context = LAContext()
         let reason = "Autenticación Biometrica"
 
 
         if((defaults.string(forKey: key)) != nil){
             print("verificamos la key")
-            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { [self] (success, evaluateError) in
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [self] (success, evaluateError) in
                 if success {
                     call.resolve([
                         "value": implementation.verify("OK")
@@ -138,22 +139,25 @@ public class BiometriaPlugin: CAPPlugin {
         let defaults = UserDefaults.standard
         let key: String = call.getString("key") ?? ""
         let password: String = call.getString("password") ?? ""
-        var context = LAContext()
+        let context = LAContext()
         let reason = "Autenticación Biometrica"
 
         
-        defaults.set(password, forKey: key)
+        defaults.set(password, forKey: password)
+        defaults.set(key, forKey: key)
+
+        print("la key es: \(key)")
 
         if((defaults.string(forKey: key)) != nil){
             print("guardamos la key")
-            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { [self] (success, evaluateError) in
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [self] (success, evaluateError) in
                 if success {
                     call.resolve([
                         "value": implementation.save("OK")
                     ])
                 }else{
                     call.resolve([
-                        "value": implementation.save("ERROR")
+                        "value": implementation.save("No")
                     ])
                 }
                 
@@ -170,9 +174,10 @@ public class BiometriaPlugin: CAPPlugin {
      @objc func saveUser(_ call: CAPPluginCall) {
         let defaults = UserDefaults.standard
         let user: String = call.getString("name") ?? "no hay nada"
-        print("entramos en save user")
+        print("entramos en save user \(user)")
         
         defaults.set(user, forKey: "user")
+         print(defaults.string(forKey: "user") as Any)
 
         if((defaults.string(forKey: "user")) != nil){
             print("guardamos el usuario")
@@ -182,7 +187,7 @@ public class BiometriaPlugin: CAPPlugin {
                     ])
                 }else{
                     call.resolve([
-                        "value": implementation.saveUser("ERROR")
+                        "value": implementation.saveUser("No")
                     ])
                 }
             
@@ -192,13 +197,13 @@ public class BiometriaPlugin: CAPPlugin {
         let userDefaults = UserDefaults.standard
          let name: String = userDefaults.string(forKey: "user") ?? ""
          
-         print("estamos en getUser")
+         print("estamos en getUser \(name)")
 
 
-        if((userDefaults.string(forKey: "user")) != nil){
+        if((userDefaults.string(forKey: "name")) != nil){
             print("Hay usuario")
             call.resolve([
-                "value": implementation.getUser("hay user")
+                "value": implementation.getUser("name")
             ])
         }else{
             print("No hay usuario")

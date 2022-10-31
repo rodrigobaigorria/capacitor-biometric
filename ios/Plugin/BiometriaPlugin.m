@@ -8,5 +8,8 @@ CAP_PLUGIN(BiometriaPlugin, "Biometria",
            CAP_PLUGIN_METHOD(isAvailable, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(verify, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(save, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(saveUser, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getUser, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(cleanAll, CAPPluginReturnPromise);
 
 )
