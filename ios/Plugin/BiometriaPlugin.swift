@@ -14,7 +14,7 @@ public class BiometriaPlugin: CAPPlugin {
     private let implementation = Biometria()
 
     @objc func has(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
+        let value = call.getString("key") ?? ""
         print("value desde has: \(value)")
         let userDefaults = UserDefaults.standard
         if((userDefaults.string(forKey: value)) != nil){
@@ -200,15 +200,15 @@ public class BiometriaPlugin: CAPPlugin {
          print("estamos en getUser \(name)")
 
 
-        if((userDefaults.string(forKey: "name")) != nil){
+        if((userDefaults.string(forKey: "user")) != nil){
             print("Hay usuario")
             call.resolve([
-                "value": implementation.getUser("name")
+                "value": implementation.getUser(name)
             ])
         }else{
             print("No hay usuario")
             call.resolve([
-                "value": implementation.getUser("ERROR")
+                "value": implementation.getUser("")
             ])
         }
         
@@ -220,6 +220,7 @@ public class BiometriaPlugin: CAPPlugin {
     }
 
     @objc func cleanAll(_ call: CAPPluginCall) {
+        print("Limpiamos todo")
         let source = call.getString("source") ?? ""
         let defaults = UserDefaults.standard
         let dictionary = defaults.dictionaryRepresentation()
