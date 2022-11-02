@@ -107,9 +107,10 @@ public class BiometriaPlugin: CAPPlugin {
     @objc func verify(_ call: CAPPluginCall) {
         let defaults = UserDefaults.standard
         let key: String = call.getString("key") ?? ""
-        let _: String = call.getString("message") ?? ""
+        let message: String = call.getString("message") ?? ""
         let context = LAContext()
-        let reason = "Autenticación Biometrica"
+        let name: String = defaults.string(forKey: "user") ?? "Autenticación Biometrica"
+        let reason = "¡Hola \(name)!"
 
 
         if((defaults.string(forKey: key)) != nil){
@@ -121,7 +122,7 @@ public class BiometriaPlugin: CAPPlugin {
                     ])
                 }else{
                     call.resolve([
-                        "value": implementation.verify("ERROR")
+                        "value": implementation.verify("No")
                     ])
                 }
                 
@@ -130,7 +131,7 @@ public class BiometriaPlugin: CAPPlugin {
         }else{
             print("No guardamos la key")
             call.resolve([
-                "value": implementation.verify("ERROR")
+                "value": implementation.verify("No")
             ])
         }
     }
@@ -166,7 +167,7 @@ public class BiometriaPlugin: CAPPlugin {
         }else{
             print("No guardamos la key")
             call.resolve([
-                "value": implementation.save("ERROR")
+                "value": implementation.save("No")
             ])
         }
     }
